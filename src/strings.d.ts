@@ -1,3 +1,6 @@
+/// <reference path="shared.d.ts" />
+/// <reference path="utils.d.ts" />
+
 declare namespace InfinitelyTyped {
     export namespace Strings {
         type BackwardSlice<S extends string, N extends number = 1> = N extends 0
