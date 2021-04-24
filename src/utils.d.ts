@@ -47,8 +47,6 @@ declare namespace InfinitelyTyped {
             [K in A[keyof A & number]]: UInts[FindListIndex<A, K>];
         };
 
-        export type Join<A> = A extends [infer Head, ...infer Rest] ? `${Head & string}${Join<Rest>}` : "";
-
         export type ClampMax<V extends number, M extends number> = GreaterThan<V, M> extends true ? M : V;
         export type ClampMin<V extends number, M extends number> = GreaterThan<M, V> extends true ? M : V;
         export type Clamp<Min extends number, Val extends number, Max extends number> = ClampMin<ClampMax<Val, Max>, Min>;
@@ -173,20 +171,6 @@ declare namespace InfinitelyTyped {
             }
         >;
 
-        export type Split<Input extends string, Separator extends string = ""> = Input extends ""
-            ? []
-            : Input extends `${infer Start}${Separator}${infer End}`
-            ? [Start, ...Split<End, Separator>]
-            : [Input];
-
-        export type WhiteSpaceCharacter = " " | "\n";
-        export type TrimEnd<T extends string> = T extends `${infer Rest}${WhiteSpaceCharacter}` ? TrimEnd<Rest> : T;
-        export type TrimStart<T extends string> = T extends `${WhiteSpaceCharacter}${infer Rest}` ? TrimStart<Rest> : T;
-
-        export type Trim<T extends string> = TrimEnd<TrimStart<T>>;
-
-        export type Length<T extends string> = Split<T>["length"];
-
         export type GreaterThan<A extends number, B extends number, Checked extends ReadonlyArray<number> = Counter> = TupleFirst<Checked> extends A
             ? false
             : TupleFirst<Checked> extends B
@@ -194,17 +178,5 @@ declare namespace InfinitelyTyped {
             : GreaterThan<A, B, TupleExcludingFirst<Readonly<Checked>>>;
 
         export type LesserThan<A extends number, B extends number> = GreaterThan<B, A>;
-
-        export type Not<T extends boolean> = T extends true ? false : true;
-
-        export type Nullish = null | undefined;
-
-        export type Falsy = false | "" | 0 | 0n | Nullish;
-
-        export type And<A, B> = A extends Falsy ? A : B;
-
-        export type Or<A, B> = A extends Falsy ? B : A;
-
-        export type NullishCoalescing<A, B> = A extends Nullish ? B : A;
     }
 }
