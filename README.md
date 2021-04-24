@@ -1,10 +1,4 @@
-<div style="display: flex; align-items: center;">
-
-<img src="./icon.png" style="border-radius: 50%; margin-right: 1rem;" width="64px" height="64px" alt="InfinitelyTyped icon" />
-
-<h2 style="font-size: 2.5rem; margin-bottom: -0.125rem;">Infinitely Typed</h2>
-
-</div>
+![Banner](banner.png)
 
 ---
 
