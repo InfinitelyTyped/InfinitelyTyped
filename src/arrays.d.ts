@@ -12,7 +12,5 @@ declare namespace InfinitelyTyped {
             : "";
 
         export type Concat<A1 extends Utils.UnknownArray, A2 extends Utils.UnknownArray> = [...A1, ...A2];
-
-        type Test = Join<[1, 2, 3], " ">;
     }
 }
