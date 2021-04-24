@@ -96,24 +96,27 @@ declare namespace InfinitelyTyped {
                 : false
             : false;
 
-        export type IndexOf<S extends string, Q extends string, F extends number = 0> = Q extends ""
-            ? 0
-            : S extends ""
-            ? -1
-            : S extends `${infer Head}${infer Rest}`
-            ? StartsWith<S, Q> extends true
-                ? Utils.Clamp<0, F, Length<S>>
-                : IndexOf<Rest, Q, Utils.Increment<F>>
-            : -1;
+        export type IndexOf<S extends string, Q extends string, F extends number = 0, I extends number = 0> = F extends 0
+            ? Q extends ""
+                ? 0
+                : S extends ""
+                ? -1
+                : S extends `${infer Head}${infer Rest}`
+                ? StartsWith<S, Q> extends true
+                    ? Utils.Clamp<0, I, Length<S>>
+                    : IndexOf<Rest, Q, 0, Utils.Increment<I>>
+                : -1
+            : IndexOf<Slice<S, F>, Q, 0, F>;
 
-        export type LastIndexOf<S extends string, Q extends string, F extends number = Length<S>> = Q extends ""
+        // ! implement fromIndex like IndexOf
+        export type LastIndexOf<S extends string, Q extends string, I extends number = Length<S>> = Q extends ""
             ? 0
             : S extends ""
             ? -1
             : Split<S> extends [...infer Rest, infer Tail]
             ? EndsWith<S, Q> extends true
-                ? Utils.Clamp<0, F, Length<S>>
-                : LastIndexOf<Arrays.Join<Rest>, Q, Utils.Decrement<F>>
+                ? Utils.Clamp<0, I, Length<S>>
+                : LastIndexOf<Arrays.Join<Rest>, Q, Utils.Decrement<I>>
             : -1;
 
         //@ts-ignore
