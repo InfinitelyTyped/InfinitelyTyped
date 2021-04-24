@@ -65,7 +65,6 @@ declare namespace InfinitelyTyped {
                   Utils.Subtract<Length<A>, Shared.ToPositive[Utils.Clamp<Utils.Negatives[Length<A>], Start, 0> & keyof Shared.ToPositive]>
               >;
 
-        //! implement fromIndex
         export type IndexOf<A extends Utils.UnknownArray, E extends unknown, I extends number = 0> = Length<A> extends 0
             ? -1
             : A extends [infer Head, ...infer Rest]
@@ -74,7 +73,6 @@ declare namespace InfinitelyTyped {
                 : IndexOf<Rest, E, Utils.Increment<I>>
             : -1;
 
-        //! implement fromIndex
         export type LastIndexOf<A extends Utils.UnknownArray, E extends unknown, I extends number = Length<A>> = I extends 0
             ? -1
             : A extends [...infer Rest, infer Tail]

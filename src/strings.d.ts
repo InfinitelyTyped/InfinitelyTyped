@@ -108,7 +108,6 @@ declare namespace InfinitelyTyped {
                 : -1
             : IndexOf<Slice<S, F>, Q, 0, F>;
 
-        // ! implement fromIndex like IndexOf
         export type LastIndexOf<S extends string, Q extends string, I extends number = Length<S>> = Q extends ""
             ? 0
             : S extends ""
